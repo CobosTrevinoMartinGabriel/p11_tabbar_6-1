@@ -1,43 +1,89 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const AppMiTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppMiTabBar extends StatelessWidget {
+  const AppMiTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      debugShowCheckedModeBanner: false,
+      title: "Ejemplo TabBar Martin Cobos",
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MiPaginaInicial(),
     );
   }
-}
+} //fin de AppMiTabBar
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+//stateful
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+} //MiPaginaInicial
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("TabBar Martin Cobos"),
+          centerTitle: true,
+          bottom: TabBar(tabs: [
+            Tab(
+              text: "ResidentEvil",
+              icon: Icon(Icons.policy),
+            ),
+            Tab(
+              text: "Street Fighters",
+              icon: Icon(Icons.streetview),
+            ),
+            Tab(
+              text: "AceAttorney",
+              icon: Icon(Icons.account_balance_rounded),
+            ),
+            Tab(
+              text: "Megaman",
+              icon: Icon(Icons.engineering),
+            )
+          ] //fin de tabs
+              ), //fin bottom tabBar
         ),
+        body: TabBarView(
+          children: const <Widget>[
+            Center(
+              child: Text(
+                "Resident evil 2 Remake",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              ),
+            ),
+            Center(
+              child: Text(
+                "Street Fighters 6",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              ),
+            ),
+            Center(
+              child: Text(
+                "Ace attorney trilogy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              ),
+            ),
+            Center(
+              child: Text(
+                "Mega Man 11",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              ),
+            ),
+          ], //jardin de niños
+        ), //fin de TabBarView
       ),
-    );
-  }
-}
+    ); //fin de scaffold
+  } //fin widget
+} //_MiPaginaInicialState
